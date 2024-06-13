@@ -844,7 +844,7 @@ class _ProfessorFormPageState extends State<ProfessorFormPage> {
       //_idadeFormController.text = _professorEditing!.idade.toString();
       _graduacaoFormController.text = _professorEditing!.graduacao;
       _especializacaoFormController.text = _professorEditing!.especializacao;
-      _statusFormController.text = _professorEditing!.status;
+      _selectedStatus = _professorEditing!.status;
     }
 
     return Scaffold(
@@ -1022,6 +1022,7 @@ class _ProfessorFormPageState extends State<ProfessorFormPage> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 12),
                 DropdownButtonFormField<String>(
                   decoration: const InputDecoration(
                     labelText: 'Status',
@@ -1063,7 +1064,7 @@ class _ProfessorFormPageState extends State<ProfessorFormPage> {
       //final idade = int.tryParse(_idadeFormController.text) ?? 0;
       final graduacao = _graduacaoFormController.text;
       final especializacao = _especializacaoFormController.text;
-      final status = _statusFormController.text;
+      final status = _selectedStatus!;
 
       final Professor professor = Professor(matricula: matricula, nome: nome, email: email, graduacao: graduacao, especializacao: especializacao, status: status);
       await widget._professorRepository.save(professor);
